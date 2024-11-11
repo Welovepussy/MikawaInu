@@ -5,106 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mikawa Inu</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #2575fc; /* Static background for better performance */
-            color: white;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            margin: 0;
-            text-align: center;
-        }
-
-        /* Simple Overlay */
-        .overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 1;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .fade-in-text {
-            font-size: 2.5rem;
-        }
-
-        /* Header Styling */
-        header {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            transform: scale(1.1);
-        }
-
-        /* Main Content Styling */
-        main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            z-index: 10;
-        }
-
-        .about-section {
-            margin-bottom: 20px;
-            max-width: 800px;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        h2 {
-            margin-bottom: 20px;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        p {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* Lazy Loading of the iframe */
-        .chart-section iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        footer {
-            margin-top: 50px;
-            font-size: 1rem;
-        }
-    </style>
 </head>
 <body>
     <div class="overlay">
@@ -128,22 +28,10 @@
 
         <section class="chart-section">
             <h2>Mikawa Inu Price Chart</h2>
-            <!-- Using a simple image as a fallback -->
-            <a href="https://dexscreener.com/solana/5Jng6jkLKU1o8BNrCzTEMXMFvPjNJZTpdWR3Hq4RHJb6" target="_blank">
-                <img src="https://via.placeholder.com/800x400.png?text=Chart+Not+Loaded" alt="Price Chart" width="100%">
-            </a>
+            <iframe src="https://dexscreener.com/solana/5Jng6jkLKU1o8BNrCzTEMXMFvPjNJZTpdWR3Hq4RHJb6" width="100%" height="400" frameborder="0"></iframe>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Mikawa Inu. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Delay removing overlay to let the page load quickly
-        setTimeout(() => {
-            document.querySelector(".overlay").style.opacity = "0";
-        }, 1500);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
