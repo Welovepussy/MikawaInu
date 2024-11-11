@@ -24,32 +24,21 @@
             align-items: center;
             overflow: hidden;
             margin: 0;
+            text-align: center;
         }
 
-        /* Overlay Animation */
+        /* Simple Overlay */
         .overlay {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            animation: fadeIn 2s ease-out;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
         }
 
         .fade-in-text {
             font-size: 2.5rem;
-            text-align: center;
-            animation: textAnimation 2s ease-out;
-        }
-
-        @keyframes textAnimation {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
         }
 
         /* Header Styling */
@@ -89,18 +78,6 @@
             background-color: rgba(0, 0, 0, 0.6);
             border-radius: 10px;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-            animation: fadeInContent 2s ease-out;
-        }
-
-        @keyframes fadeInContent {
-            0% {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
 
         h2 {
@@ -114,21 +91,15 @@
             line-height: 1.6;
         }
 
+        /* Lazy Loading of the iframe */
         .chart-section iframe {
             width: 100%;
             height: 400px;
             border: none;
             border-radius: 10px;
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
-            animation: fadeInContent 2s ease-out;
         }
 
-        /* Lazy Loading of the iframe */
-        .chart-section iframe[data-src] {
-            display: none;
-        }
-
-        /* Footer Styling */
         footer {
             margin-top: 50px;
             font-size: 1rem;
@@ -157,8 +128,10 @@
 
         <section class="chart-section">
             <h2>Mikawa Inu Price Chart</h2>
-            <!-- Lazy Load iframe -->
-            <iframe data-src="https://dexscreener.com/solana/5Jng6jkLKU1o8BNrCzTEMXMFvPjNJZTpdWR3Hq4RHJb6" width="100%" height="400" frameborder="0" loading="lazy"></iframe>
+            <!-- Using a simple image as a fallback -->
+            <a href="https://dexscreener.com/solana/5Jng6jkLKU1o8BNrCzTEMXMFvPjNJZTpdWR3Hq4RHJb6" target="_blank">
+                <img src="https://via.placeholder.com/800x400.png?text=Chart+Not+Loaded" alt="Price Chart" width="100%">
+            </a>
         </section>
     </main>
 
@@ -167,11 +140,10 @@
     </footer>
 
     <script>
-        // Lazy load iframe script
-        document.addEventListener("DOMContentLoaded", function() {
-            const iframe = document.querySelector(".chart-section iframe");
-            iframe.src = iframe.getAttribute("data-src");
-        });
+        // Delay removing overlay to let the page load quickly
+        setTimeout(() => {
+            document.querySelector(".overlay").style.opacity = "0";
+        }, 1500);
     </script>
 </body>
 </html>
