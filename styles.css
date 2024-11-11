@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.fade-in-text {
+    font-size: 2em;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+header {
+    padding: 10px;
+    text-align: right;
+}
+
+.social-icons {
+    display: inline-flex;
+    gap: 15px;
+}
+
+.icon {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.icon.twitter { background-color: #1DA1F2; }
+.icon.telegram { background-color: #0088cc; }
+
+main {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.about-section, .chart-section {
+    margin: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #1e1e1e;
+}
+
+.about-section h2,
+.chart-section h2 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.about-section p {
+    margin-bottom: 15px;
+    font-size: 1em;
+    line-height: 1.6;
+}
