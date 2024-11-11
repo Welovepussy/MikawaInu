@@ -15,9 +15,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
+            background: #2575fc; /* Static background for better performance */
             color: white;
             height: 100vh;
             display: flex;
@@ -25,13 +23,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-        }
-
-        /* Gradient Animation */
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            margin: 0;
         }
 
         /* Overlay Animation */
@@ -40,13 +32,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            animation: fadeIn 3s ease-out;
+            animation: fadeIn 2s ease-out;
         }
 
         .fade-in-text {
             font-size: 2.5rem;
             text-align: center;
-            animation: textAnimation 3s ease-out;
+            animation: textAnimation 2s ease-out;
         }
 
         @keyframes textAnimation {
@@ -131,6 +123,11 @@
             animation: fadeInContent 2s ease-out;
         }
 
+        /* Lazy Loading of the iframe */
+        .chart-section iframe[data-src] {
+            display: none;
+        }
+
         /* Footer Styling */
         footer {
             margin-top: 50px;
@@ -160,7 +157,8 @@
 
         <section class="chart-section">
             <h2>Mikawa Inu Price Chart</h2>
-            <iframe src="https://dexscreener.com/solana/5Jng6jkLKU1o8BNrCzTEMXMFvPjNJZTpdWR3Hq4RHJb6" width="100%" height="400" frameborder="0"></iframe>
+            <!-- Lazy Load iframe -->
+            <iframe data-src="https://dexscreener.com/solana/5Jng6jkLKU1o8BNrCzTEMXMFvPjNJZTpdWR3Hq4RHJb6" width="100%" height="400" frameborder="0" loading="lazy"></iframe>
         </section>
     </main>
 
@@ -168,6 +166,12 @@
         <p>&copy; 2024 Mikawa Inu. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Lazy load iframe script
+        document.addEventListener("DOMContentLoaded", function() {
+            const iframe = document.querySelector(".chart-section iframe");
+            iframe.src = iframe.getAttribute("data-src");
+        });
+    </script>
 </body>
 </html>
